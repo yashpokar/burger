@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Burger\Database\DB;
 use App\Models\User;
 
-class HomeController
+class HomeController extends Controller
 {
 	public function index()
 	{

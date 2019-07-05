@@ -15,6 +15,8 @@ class Router
 	{
 		$router = new static();
 
+		Route::initialize($router);
+
 		require $file;
 
 		return $router;

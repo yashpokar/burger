@@ -23,7 +23,7 @@ class Template
 	public function build()
 	{
 		$this->_content = preg_replace('/\{\{([^\}]+)\}\}/', '<?= \1 ?>', $this->_content);
-		$this->_content = preg_replace('/@(if|foreach)\s*\(([^\)]+)\)/', '<?php \1 (\2) : ?>', $this->_content);
+		$this->_content = preg_replace('/@(if|foreach)\s*\(([^\n]+)\)/', '<?php \1 (\2) : ?>', $this->_content);
 		$this->_content = preg_replace('/@end(if|foreach)/', '<?php end\1; ?>', $this->_content);
 
 		return $this;

@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+unset($argv[0]);
+
+$method = $argv[1];
+
+unset($argv[1]);
+
+(new \Burger\Console\Command())->$method(...$argv);
