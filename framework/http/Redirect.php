@@ -11,6 +11,15 @@ class Redirect
 
 	public function to($location)
 	{
+		if (is_numeric($location)) {
+			switch (404) {
+				case 404:
+					header('HTTP/1.0 404 Not Found');
+					exit();
+					break;
+			}
+		}
+
 		$this->_location = $location;
 	}
 
@@ -35,6 +44,13 @@ class Redirect
 	public function with($key, $data)
 	{
 		Session::flash($key, $data);
+
+		return $this;
+	}
+
+	public function withInputs($inputs)
+	{
+		Session::put('inputs', $inputs);
 
 		return $this;
 	}

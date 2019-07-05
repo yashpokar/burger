@@ -13,11 +13,9 @@ class Template
 		$this->_content = file_get_contents(__DIR__ . "/../../resources/views/{$filename}.view.php");
 	}
 
-	public static function render($filename)
+	public function render()
 	{
-		return (new static($filename))
-			->build()
-			->saveAndEchoTemplate();
+		return $this->build()->saveAndEchoTemplate();
 	}
 
 	public function build()

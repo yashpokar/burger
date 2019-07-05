@@ -1,5 +1,17 @@
 <?php
 
+if (! function_exists('old')) {
+	function old(...$args) {
+		return \Burger\Form\Input::old(...$args);
+	}
+}
+
+if (! function_exists('flash')) {
+	function flash(...$args) {
+		return \Burger\Session\Session::flash(...$args);
+	}
+}
+
 if (! function_exists('input')) {
 	function input($field) {
 		return \Burger\Form\Input::get($field);

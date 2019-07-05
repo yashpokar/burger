@@ -7,10 +7,6 @@
 	    <title>Sign Up</title>
 	</head>
 	<body>
-		<?php if ($errors->has('first_name')) : ?>
-			<?=  $errors->first('first_name')  ?>
-		<?php endif; ?>
-
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7 mt-5 mx-auto">
@@ -31,31 +27,51 @@
 
 										<div class="form-group">
 											<label for="first_name">First name</label>
-											<input type="text" class="form-control" id="first_name" name="first_name">
+											<input type="text" class="form-control<?=  $errors->has('first_name') ? ' is-invalid' : ''  ?>" id="first_name" name="first_name" value="<?=  old('first_name') ?: ''  ?>">
+
+											<?php if ($errors->has('first_name')) : ?>
+												<div class="invalid-feedback"><?=  $errors->first('first_name')  ?></div>
+											<?php endif; ?>
 										</div>
 									</div>
 
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="last_name">Last name</label>
-											<input type="text" class="form-control" id="last_name" name="last_name">
+											<input type="text" class="form-control<?=  $errors->has('last_name') ? ' is-invalid' : ''  ?>" id="last_name" name="last_name"  value="<?=  old('last_name') ?: ''  ?>">
+
+											<?php if ($errors->has('last_name')) : ?>
+												<div class="invalid-feedback"><?=  $errors->first('last_name')  ?></div>
+											<?php endif; ?>
 										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="email">Email address</label>
-									<input type="email" class="form-control" id="email" name="email">
+									<input type="email" class="form-control<?=  $errors->has('email') ? ' is-invalid' : ''  ?>" id="email" name="email" value="<?=  old('email') ?: ''  ?>">
+
+									<?php if ($errors->has('email')) : ?>
+										<div class="invalid-feedback"><?=  $errors->first('email')  ?></div>
+									<?php endif; ?>
 								</div>
 
 								<div class="form-group">
 									<label for="password">Password</label>
-									<input type="password" class="form-control" id="password" name="password">
+									<input type="password" class="form-control<?=  $errors->has('password') ? ' is-invalid' : ''  ?>" id="password" name="password" value="<?=  old('password') ?: ''  ?>">
+
+									<?php if ($errors->has('password')) : ?>
+										<div class="invalid-feedback"><?=  $errors->first('password')  ?></div>
+									<?php endif; ?>
 								</div>
 
 								<div class="form-group">
 									<label for="confirm_password">Confirm Password</label>
-									<input type="email" class="form-control" id="confirm_password" name="confirm_password">
+									<input type="password" class="form-control<?=  $errors->has('confirm_password') ? ' is-invalid' : ''  ?>" id="confirm_password" name="confirm_password" value="<?=  old('confirm_password') ?: ''  ?>">
+
+									<?php if ($errors->has('confirm_password')) : ?>
+										<div class="invalid-feedback"><?=  $errors->first('confirm_password')  ?></div>
+									<?php endif; ?>
 								</div>
 
 								<div class="form-group">

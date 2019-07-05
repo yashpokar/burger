@@ -14,8 +14,9 @@ class Validate
 		'min' => ':field should have atleast :value characters.',
 		'max' => ':field should not more than :value characters.',
 		'unique' => ':field already exists.',
-		'email' => 'invalid email address.',
-		'matches' => ':field should match with :value.',
+		'email' => 'Invalid email address.',
+		'matches' => ':field does not match.',
+		'required' => ':field is required.',
 	];
 
 	public function __construct(ErrorHandler $errorHandler)
@@ -37,12 +38,8 @@ class Validate
 					[$rule, $args] = explode(':', $rule);
 				}
 
-				if ($rule === 'required' && empty($value)) {
-					$this->_errorHandler->push($field, "{$fieldName} is Required.");
-				} else {
-					if (! $this->$rule($value, ...explode(',', $args))) {
-						$this->_errorHandler->push($field, str_replace([':field', ':value'], [$fieldName, $args], $this->_messages[$rule]));
-					}
+				if (! $this->$rule($field, $value, ...explode(',', $args))) {
+					$this->_errorHandler->push($field, str_replace([':field', ':value'], [$fieldName, $args], $this->_messages[$rule]));
 				}
 			}
 		}

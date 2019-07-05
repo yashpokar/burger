@@ -2,6 +2,8 @@
 
 namespace Burger\Form;
 
+use Burger\Session\Session;
+
 class Input
 {
 	public static function exists($type = 'POST')
@@ -23,12 +25,21 @@ class Input
 
 	public static function get($field)
 	{
-		if (isset($_POST[$item])) {
-			return $_POST[$item];
-		} else if (isset($_GET[$item])) {
-			return $_GET[$item];
+		if (isset($_POST[$field])) {
+			return $_POST[$field];
+		} else if (isset($_GET[$field])) {
+			return $_GET[$field];
 		}
 
 		return '';
+	}
+
+	public static function old($field)
+	{
+		if (Session::has('inputs')) {
+			return Session::get('inputs')[$field];
+		}
+
+		return false;
 	}
 }

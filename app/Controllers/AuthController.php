@@ -18,8 +18,7 @@ class AuthController extends Controller
 			'first_name' => 'required|min:2|max:20',
 			'last_name' => 'required|min:2|max:20',
 			'email' => 'required|max:255|email|unique:users',
-			'password' => 'required|min:6',
-			'confirm_password' => 'required|matches:password',
+			'password' => 'required|min:6|matches:confirm_password',
 		]);
 
 		echo "success";

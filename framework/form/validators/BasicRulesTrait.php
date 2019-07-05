@@ -2,30 +2,40 @@
 
 namespace Burger\Form\Validators;
 
+use \Burger\Database\DB;
+use \Burger\Form\Input;
+
 trait BasicRulesTrait
 {
-	public function min($value, $atleast)
+	public function required($field, $value)
+	{
+		return (bool) trim($value);
+	}
+
+	public function min($field, $value, $atleast)
 	{
 		return strlen($value) >= $atleast;
 	}
 
-	public function max($value, $atmost)
+	public function max($field, $value, $atmost)
 	{
 		return strlen($value) <= $atmost;
 	}
 
-	public function unique($value, $table)
+	public function unique($field, $value, $table)
 	{
-		return true;
+		return ! DB::table($table)
+			->where($field, $value)
+			->exists();
 	}
 
-	public function email($value)
+	public function email($field, $value)
 	{
-		return true;
+		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
 
-	public function matches($value, $to)
+	public function matches($field, $value, $to)
 	{
-		return true;
+		return Input::get($to) === $value;
 	}
 }

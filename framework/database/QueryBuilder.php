@@ -131,6 +131,15 @@ class QueryBuilder
 	}
 
 	/**
+	 * Does record exists
+	 * @return Boolean
+	 */
+	public function exists()
+	{
+		return (bool) $this->count();
+	}
+
+	/**
 	 * build and execute query for search helper
 	 * @return PDO
 	 */
